@@ -72,7 +72,7 @@ pub async fn challenge_complete(
             // todo: token stuff
             let token = Alphanumeric.sample_string(&mut rand::thread_rng(), 32);
             sqlx::query!(
-                "REPLACE INTO users (id, account_id, token) VALUES (?, ?, ?)",
+                "REPLACE INTO users (id, token) VALUES (?, ?)",
                 completed_challenge.0,
                 token,
             )
