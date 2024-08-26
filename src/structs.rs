@@ -126,27 +126,6 @@ impl<'r, 'o: 'r> Responder<'r, 'o> for GenericError {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct Profile {
-    pub(crate) id: i64,
-    pub(crate) bio: Option<String>,
-    pub(crate) pronouns: Option<String>,
-    // socials
-    pub(crate) website: Option<String>,
-    pub(crate) social_github: Option<String>,
-    pub(crate) social_bluesky: Option<String>,
-    pub(crate) social_fediverse: Option<String>,
-    pub(crate) social_discord: Option<String>,
-    pub(crate) social_matrix: Option<String>,
-    pub(crate) social_tumblr: Option<String>,
-    pub(crate) social_myspace: Option<String>,
-    pub(crate) social_facebook: Option<String>,
-
-    // other stuff
-    pub(crate) color1: Option<i32>,
-    pub(crate) color2: Option<i32>,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
 pub struct DBUser {
     pub(crate) id: i64,
     pub(crate) token: Option<String>,

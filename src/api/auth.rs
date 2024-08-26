@@ -69,11 +69,10 @@ pub async fn challenge_complete(
         if completed_challenge.1 == challenge.1.challenge {
             // !! this will block if a reference to completed_challenges is still alive !!
             auth_stuff_meow.completed_challenges.remove(acc_id);
-
             // todo: token stuff
             let token = Alphanumeric.sample_string(&mut rand::thread_rng(), 32);
             sqlx::query!(
-                "REPLACE INTO users (id, token) VALUES (?, ?)",
+                "REPLACE INTO users (id, account_id, token) VALUES (?, ?, ?)",
                 completed_challenge.0,
                 token,
             )
