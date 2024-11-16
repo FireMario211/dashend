@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:9.0.1
+    container_name: dashend-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ROOTPASSWORDHERE
+      MYSQL_USER: USERHERE
+      MYSQL_PASSWORD: PASSWORDHERE
+      MYSQL_DATABASE: db
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - backend
+
+  rust_server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dashend-server
+    environment:
+      GD_ACC_ID: "ACCID"
+      GD_ACC_PW: "PASSWD"
+    ports:
+      - "61475:61475"
+    depends_on:
+      - db
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  mysql_data:
